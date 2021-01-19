@@ -3132,7 +3132,7 @@ span.categoryBar-list-count::after {
   right: -100%;
 }
 li.categoryBar-list-item:nth-child(1) {
-  background: url('https://cdn.jsdelivr.net/gh/Akilarlxh/Akilarlxh.github.io@v3.3.3_2/img/cover1.webp');
+  background: url('https://tse1-mm.cn.bing.net/th/id/OIP.lzUhh3cMIyqgUJcdtzvMjgHaFj?pid=Api&rs=1');
 }
 li.categoryBar-list-item:nth-child(2) {
   background: #abcdef;
@@ -3154,7 +3154,7 @@ li.categoryBar-list-item:nth-child(6) {
   background: url('https://cdn.jsdelivr.net/gh/Akilarlxh/Akilarlxh.github.io@v3.3.3_2/img/cover6.webp');
 }
 li.categoryBar-list-item:nth-child(1)>span::after {
-  content: '长篇小说连载' !important;
+  content: 'C/C++学习' !important;
 }
 li.categoryBar-list-item:nth-child(2)>span::after {
   content: '杂谈教程' !important;
