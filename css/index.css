@@ -1330,7 +1330,7 @@ canvas:not(#ribbon-canvas),
   }
 }
 :root {
-  --global-font-size: 18px;
+  --global-font-size: 15px;
   --global-bg: #fff;
   --font-color: #4c4948;
   --hr-border: #a4d8fa;
@@ -1705,7 +1705,7 @@ blockquote footer cite:before {
 }
 #article-container pre,
 #article-container code {
-  font-size: 18px;
+  font-size: 15px;
   font-family: consolas, Menlo, 'PingFang SC', 'Microsoft YaHei', sans-serif !important;
 }
 #article-container code {
@@ -1736,7 +1736,7 @@ blockquote footer cite:before {
 #article-container figure.highlight figcaption,
 #article-container figure.highlight .caption {
   padding: 0.3rem 0 0.1rem 0.7rem;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1em;
 }
 #article-container figure.highlight figcaption a,
@@ -1768,7 +1768,7 @@ blockquote footer cite:before {
   height: 2.15em;
   background: #e6ebf1;
   color: #90a4ae;
-  font-size: 18px;
+  font-size: 15px;
 }
 #article-container .highlight-tools.closed + table {
   display: none;
@@ -3146,22 +3146,6 @@ li.categoryBar-list-item:nth-child(4) {
 li.categoryBar-list-item:nth-child(5) {
   background: url('/image/005.jpg');
 }
-li.categoryBar-list-item:nth-child(6) {
-  background: rgba(45,67,89,0.7);
-}
-li.categoryBar-list-item:nth-child(7) {
-  background: -webkit-linear-gradient(rgba(0, 0, 0, 0.4) 25%, rgba(200,16 , 16, 0) 100%);
-  background: -moz-linear-gradient(rgba(0, 0, 0, 0.4) 25%, rgba(200,16 , 16, 0) 100%);
-  background: -o-linear-gradient(rgba(0, 0, 0, 0.4) 25%, rgba(200,16 , 16, 0) 100%);
-  background: -ms-linear-gradient(rgba(0, 0, 0, 0.4) 25%, rgba(200,16 , 16, 0) 100%);
-  background: linear-gradient(rgba(0, 0, 0, 0.4) 25%, rgba(200,16 , 16, 0) 100%);
-}
-li.categoryBar-list-item:nth-child(8) {
-  background: url('https://cdn.jsdelivr.net/gh/Akilarlxh/Akilarlxh.github.io@v3.3.3_2/img/cover5.webp');
-}
-li.categoryBar-list-item:nth-child(9) {
-  background: url('https://cdn.jsdelivr.net/gh/Akilarlxh/Akilarlxh.github.io@v3.3.3_2/img/cover6.webp');
-}
 li.categoryBar-list-item:nth-child(1)>span::after {
   content: 'ACM的辛酸史' !important;
 }
@@ -3176,9 +3160,6 @@ li.categoryBar-list-item:nth-child(4)>span::after {
 }
 li.categoryBar-list-item:nth-child(5)>span::after {
   content: '网页小白的成长史' !important;
-}
-li.categoryBar-list-item:nth-child(6)>span::after {
-  content: '诗词歌赋' !important;
 }
 li.categoryBar-list-item {
   width: 24% !important;
