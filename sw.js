@@ -1,271 +1,93 @@
-/**
- * 自动引入模板，在原有 sw-precache 插件默认模板基础上做的二次开发
- *
- * 因为是自定导入的模板，项目一旦生成，不支持随 sw-precache 的版本自动升级。
- * 可以到 Lavas 官网下载 basic 模板内获取最新模板进行替换
- *
- */
+const workboxVersion = '5.1.3';
 
-/* eslint-disable */
+importScripts(`https://storage.googleapis.com/workbox-cdn/releases/${workboxVersion}/workbox-sw.js`);
 
-'use strict';
+workbox.core.setCacheNameDetails({
+    prefix: "Crotes"
+});
 
-var precacheConfig = [];
-var cacheName = 'sw-precache-v3--' + (self.registration ? self.registration.scope : '');
-var firstRegister = 1; // 默认1是首次安装SW， 0是SW更新
+workbox.core.skipWaiting();
 
+workbox.core.clientsClaim();
 
-var ignoreUrlParametersMatching = [/^utm_/];
+workbox.precaching.precacheAndRoute([{"revision":"db50bf2f92572fff07ea8ace782c0d5e","url":"./2021/01/19/STL/index.html"},{"revision":"49e2ca7fcc810ba40fc12bc6cce79713","url":"./2021/01/22/程序改错与填空/index.html"},{"revision":"440746fc5767796310d19dd507ff7ca4","url":"./2021/01/22/程序设计/index.html"},{"revision":"894188977a55d2b1bfb2b95f41b54be0","url":"./2021/01/22/算法/index.html"},{"revision":"f298a377b46bea41573ab1ec8e68c7e0","url":"./2021/01/22/网页自学/index.html"},{"revision":"e61a45b066d6a323e5f1031c0e5b1049","url":"./2021/01/22/acm集训/index.html"},{"revision":"ee7062ccaffa4a9609be2f71eab55e3e","url":"./2021/01/22/algorithm/index.html"},{"revision":"e97800a494c2282ca5eac818ecb2a4ea","url":"./2021/01/23/ACM技能树/index.html"},{"revision":"c38fa7b65be6f7130fafbdec6bdf1819","url":"./2021/01/30/标签/index.html"},{"revision":"b212b1ac59134523faa1ffccbab8b295","url":"./archives/2021/01/index.html"},{"revision":"f717e4b8e66d244458e5b306be1cb31e","url":"./archives/2021/index.html"},{"revision":"2e292383f7fdd609c83b0d89685ab71f","url":"./archives/index.html"},{"revision":"d5d2500bfe8443b42baaefe4996ee532","url":"./assets/algolia/algoliasearch.js"},{"revision":"9c5e51e57e2b1d888950bf4cb5708c49","url":"./assets/algolia/algoliasearch.min.js"},{"revision":"ce9b0e62645c036a143f639b92e7789f","url":"./assets/algolia/algoliasearchLite.js"},{"revision":"c2d71f042c879659dbc97f8853b62f21","url":"./assets/algolia/algoliasearchLite.min.js"},{"revision":"b96cfe66b5d056dcbc5e0229028421d5","url":"./categories/网页自学/index.html"},{"revision":"7bdad748119e49052f38c3f539bd8284","url":"./categories/学校题库/index.html"},{"revision":"2623bfba2eda6994a77a0f99fee104fc","url":"./categories/ACM/index.html"},{"revision":"d7ef3bf52382dc60ad324697951119ca","url":"./categories/ACM技能树/index.html"},{"revision":"675b7f81ff6c5ad3419b634886a83cf4","url":"./categories/C-C/index.html"},{"revision":"2eef8a85137ce461d258504a2b02e667","url":"./categories/index.html"},{"revision":"cd40e72714dfa9f3b8da18c6e90babc7","url":"./css/index.css"},{"revision":"91fa7cf406c41eb03b25aa3a83488e45","url":"./css/my.css"},{"revision":"d41d8cd98f00b204e9800998ecf8427e","url":"./css/var.css"},{"revision":"0b8bbccd12ba9fa3d4e3b26260d7d5d6","url":"./img/siteicon/browserconfig.xml"},{"revision":"2185e75c34576dc0c2d04b5bffbc69da","url":"./img/siteicon/README.html"},{"revision":"4be0bb33c86a8c4b6a34c2823b2be275","url":"./index.html"},{"revision":"f7efbacdf5c8e57ad57deace1198b010","url":"./js/main.js"},{"revision":"d41d8cd98f00b204e9800998ecf8427e","url":"./js/my.js"},{"revision":"533d980c0d50a0d0d7fe34c41a3e2100","url":"./js/search/algolia.js"},{"revision":"acb62dcdf7e90930da3f6bf07349fc21","url":"./js/search/local-search.js"},{"revision":"b3810513e04b13b2d18c6b779c883f85","url":"./js/tw_cn.js"},{"revision":"4cfc631de0e5f6ff12b2833cac848f27","url":"./js/utils.js"},{"revision":"09eca179e8646927f5615e19839bc847","url":"./link/index.html"},{"revision":"8c228ee3d84b4de456bead4a06bdf69e","url":"./manifest.json"},{"revision":"ecb818fe670accb59744d6c0d869ddee","url":"./movie/index.html"},{"revision":"356447a18d892bc59e39849f99d47c8a","url":"./music/index.html"},{"revision":"09559190fba0fdfd7b1113d456f1ece1","url":"./sw-register.js"},{"revision":"92bdf61bd64b7b13f52048a065b41a5b","url":"./tags/ACM/index.html"},{"revision":"9c58fa60a96404e1a890a20f6cccd7c6","url":"./tags/c-头文件/index.html"},{"revision":"b6bb0bf57f62398ec3ed85c75382500c","url":"./tags/C-C/index.html"},{"revision":"46849f3d78227dfbda71a429738cf03b","url":"./tags/c语言题库/index.html"},{"revision":"b6612e067f61e79393abc94a33edd206","url":"./tags/html/index.html"},{"revision":"678f7525963b51d584a93a49352c9be4","url":"./tags/index.html"}],{
+    directoryIndex: null
+});
 
-
-var addDirectoryIndex = function (originalUrl, index) {
-    var url = new URL(originalUrl);
-    if (url.pathname.slice(-1) === '/') {
-        url.pathname += index;
-    }
-    return url.toString();
-};
-
-var cleanResponse = function (originalResponse) {
-    // 如果没有重定向响应，不需干啥
-    if (!originalResponse.redirected) {
-        return Promise.resolve(originalResponse);
-    }
-
-    // Firefox 50 及以下不知处 Response.body 流, 所以我们需要读取整个body以blob形式返回。
-    var bodyPromise = 'body' in originalResponse ?
-        Promise.resolve(originalResponse.body) :
-        originalResponse.blob();
-
-    return bodyPromise.then(function (body) {
-        // new Response() 可同时支持 stream or Blob.
-        return new Response(body, {
-            headers: originalResponse.headers,
-            status: originalResponse.status,
-            statusText: originalResponse.statusText
-        });
-    });
-};
-
-var createCacheKey = function (originalUrl, paramName, paramValue,
-    dontCacheBustUrlsMatching) {
-
-    // 创建一个新的URL对象，避免影响原始URL
-    var url = new URL(originalUrl);
-
-    // 如果 dontCacheBustUrlsMatching 值没有设置，或是没有匹配到，将值拼接到url.serach后
-    if (!dontCacheBustUrlsMatching ||
-        !(url.pathname.match(dontCacheBustUrlsMatching))) {
-        url.search += (url.search ? '&' : '') +
-            encodeURIComponent(paramName) + '=' + encodeURIComponent(paramValue);
-    }
-
-    return url.toString();
-};
-
-var isPathWhitelisted = function (whitelist, absoluteUrlString) {
-    // 如果 whitelist 是空数组，则认为全部都在白名单内
-    if (whitelist.length === 0) {
-        return true;
-    }
-
-    // 否则逐个匹配正则匹配并返回
-    var path = (new URL(absoluteUrlString)).pathname;
-    return whitelist.some(function (whitelistedPathRegex) {
-        return path.match(whitelistedPathRegex);
-    });
-};
-
-var stripIgnoredUrlParameters = function (originalUrl,
-    ignoreUrlParametersMatching) {
-    var url = new URL(originalUrl);
-    // 移除 hash; 查看 https://github.com/GoogleChrome/sw-precache/issues/290
-    url.hash = '';
-
-    url.search = url.search.slice(1) // 是否包含 '?'
-        .split('&') // 分割成数组 'key=value' 的形式
-        .map(function (kv) {
-            return kv.split('='); // 分割每个 'key=value' 字符串成 [key, value] 形式
-        })
-        .filter(function (kv) {
-            return ignoreUrlParametersMatching.every(function (ignoredRegex) {
-                return !ignoredRegex.test(kv[0]); // 如果 key 没有匹配到任何忽略参数正则，就 Return true
-            });
-        })
-        .map(function (kv) {
-            return kv.join('='); // 重新把 [key, value] 格式转换为 'key=value' 字符串
-        })
-        .join('&'); // 将所有参数 'key=value' 以 '&' 拼接
-
-    return url.toString();
-};
-
-
-var addDirectoryIndex = function (originalUrl, index) {
-    var url = new URL(originalUrl);
-    if (url.pathname.slice(-1) === '/') {
-        url.pathname += index;
-    }
-    return url.toString();
-};
-
-var hashParamName = '_sw-precache';
-var urlsToCacheKeys = new Map(
-    precacheConfig.map(function (item) {
-        var relativeUrl = item[0];
-        var hash = item[1];
-        var absoluteUrl = new URL(relativeUrl, self.location);
-        var cacheKey = createCacheKey(absoluteUrl, hashParamName, hash, false);
-        return [absoluteUrl.toString(), cacheKey];
+workbox.precaching.cleanupOutdatedCaches();
+// 可选内容 start 都选可能造成缓存过多 酌情保留。
+// 图片资源
+workbox.routing.registerRoute(
+    /\.(?:png|jpg|jpeg|gif|bmp|webp|svg|ico)$/,
+    new workbox.strategies.CacheFirst({
+        cacheName: "images",
+        plugins: [
+            new workbox.expiration.ExpirationPlugin({
+                maxEntries: 1000,
+                maxAgeSeconds: 60 * 60 * 24 * 30
+            }),
+            new workbox.cacheableResponse.CacheableResponsePlugin({
+                statuses: [0, 200]
+            })
+        ]
     })
 );
 
-function setOfCachedUrls(cache) {
-    return cache.keys().then(function (requests) {
-        // 如果原cacheName中没有缓存任何收，就默认是首次安装，否则认为是SW更新
-        if (requests && requests.length > 0) {
-            firstRegister = 0; // SW更新
-        }
-        return requests.map(function (request) {
-            return request.url;
-        });
-    }).then(function (urls) {
-        return new Set(urls);
-    });
-}
-
-self.addEventListener('install', function (event) {
-    event.waitUntil(
-        caches.open(cacheName).then(function (cache) {
-            return setOfCachedUrls(cache).then(function (cachedUrls) {
-                return Promise.all(
-                    Array.from(urlsToCacheKeys.values()).map(function (cacheKey) {
-                        // 如果缓存中没有匹配到cacheKey，添加进去
-                        if (!cachedUrls.has(cacheKey)) {
-                            var request = new Request(cacheKey, { credentials: 'same-origin' });
-                            return fetch(request).then(function (response) {
-                                // 只要返回200才能继续，否则直接抛错
-                                if (!response.ok) {
-                                    throw new Error('Request for ' + cacheKey + ' returned a ' +
-                                        'response with status ' + response.status);
-                                }
-
-                                return cleanResponse(response).then(function (responseToCache) {
-                                    return cache.put(cacheKey, responseToCache);
-                                });
-                            });
-                        }
-                    })
-                );
-            });
-        })
-            .then(function () {
-            
-            // 强制 SW 状态 installing -> activate
-            return self.skipWaiting();
-            
-        })
-    );
-});
-
-self.addEventListener('activate', function (event) {
-    var setOfExpectedUrls = new Set(urlsToCacheKeys.values());
-
-    event.waitUntil(
-        caches.open(cacheName).then(function (cache) {
-            return cache.keys().then(function (existingRequests) {
-                return Promise.all(
-                    existingRequests.map(function (existingRequest) {
-                        // 删除原缓存中相同键值内容
-                        if (!setOfExpectedUrls.has(existingRequest.url)) {
-                            return cache.delete(existingRequest);
-                        }
-                    })
-                );
-            });
-        }).then(function () {
-            
-            return self.clients.claim();
-            
-        }).then(function () {
-                // 如果是首次安装 SW 时, 不发送更新消息（是否是首次安装，通过指定cacheName 中是否有缓存信息判断）
-                // 如果不是首次安装，则是内容有更新，需要通知页面重载更新
-                if (!firstRegister) {
-                    return self.clients.matchAll()
-                        .then(function (clients) {
-                            if (clients && clients.length) {
-                                clients.forEach(function (client) {
-                                    client.postMessage('sw.update');
-                                })
-                            }
-                        })
-                }
+// 字体文件
+workbox.routing.registerRoute(
+    /\.(?:eot|ttf|woff|woff2)$/,
+    new workbox.strategies.CacheFirst({
+        cacheName: "fonts",
+        plugins: [
+            new workbox.expiration.ExpirationPlugin({
+                maxEntries: 1000,
+                maxAgeSeconds: 60 * 60 * 24 * 30
+            }),
+            new workbox.cacheableResponse.CacheableResponsePlugin({
+                statuses: [0, 200]
             })
-    );
-});
+        ]
+    })
+);
 
+// 谷歌字体
+workbox.routing.registerRoute(
+    /^https:\/\/fonts\.googleapis\.com/,
+    new workbox.strategies.StaleWhileRevalidate({
+        cacheName: "google-fonts-stylesheets"
+    })
+);
+workbox.routing.registerRoute(
+    /^https:\/\/fonts\.gstatic\.com/,
+    new workbox.strategies.CacheFirst({
+        cacheName: 'google-fonts-webfonts',
+        plugins: [
+            new workbox.expiration.ExpirationPlugin({
+                maxEntries: 1000,
+                maxAgeSeconds: 60 * 60 * 24 * 30
+            }),
+            new workbox.cacheableResponse.CacheableResponsePlugin({
+                statuses: [0, 200]
+            })
+        ]
+    })
+);
 
-
-    self.addEventListener('fetch', function (event) {
-        if (event.request.method === 'GET') {
-
-            // 是否应该 event.respondWith()，需要我们逐步的判断
-            // 而且也方便了后期做特殊的特殊
-            var shouldRespond;
-
-
-            // 首先去除已配置的忽略参数及hash
-            // 查看缓存简直中是否包含该请求，包含就将shouldRespond 设为true
-            var url = stripIgnoredUrlParameters(event.request.url, ignoreUrlParametersMatching);
-            shouldRespond = urlsToCacheKeys.has(url);
-
-            // 如果 shouldRespond 是 false, 我们在url后默认增加 'index.html'
-            // (或者是你在配置文件中自行配置的 directoryIndex 参数值)，继续查找缓存列表
-            var directoryIndex = 'index.html';
-            if (!shouldRespond && directoryIndex) {
-                url = addDirectoryIndex(url, directoryIndex);
-                shouldRespond = urlsToCacheKeys.has(url);
-            }
-
-            // 如果 shouldRespond 仍是 false，检查是否是navigation
-            // request， 如果是的话，判断是否能与 navigateFallbackWhitelist 正则列表匹配
-            var navigateFallback = '';
-            if (!shouldRespond &&
-                navigateFallback &&
-                (event.request.mode === 'navigate') &&
-                isPathWhitelisted([], event.request.url)
-            ) {
-                url = new URL(navigateFallback, self.location).toString();
-                shouldRespond = urlsToCacheKeys.has(url);
-            }
-
-            // 如果 shouldRespond 被置为 true
-            // 则 event.respondWith()匹配缓存返回结果，匹配不成就直接请求.
-            if (shouldRespond) {
-                event.respondWith(
-                    caches.open(cacheName).then(function (cache) {
-                        return cache.match(urlsToCacheKeys.get(url)).then(function (response) {
-                            if (response) {
-                                return response;
-                            }
-                            throw Error('The cached response that was expected is missing.');
-                        });
-                    }).catch(function (e) {
-                        // 如果捕获到异常错误，直接返回 fetch() 请求资源
-                        console.warn('Couldn\'t serve response for "%s" from cache: %O', event.request.url, e);
-                        return fetch(event.request);
-                    })
-                );
-            }
-        }
-    });
-
-
-
-
-
-
-
-
-
-/* eslint-enable */
+// jsdelivr的CDN资源
+workbox.routing.registerRoute(
+    /^https:\/\/cdn\.jsdelivr\.net/,
+    new workbox.strategies.CacheFirst({
+        cacheName: "static-libs",
+        plugins: [
+            new workbox.expiration.ExpirationPlugin({
+                maxEntries: 1000,
+                maxAgeSeconds: 60 * 60 * 24 * 30
+            }),
+            new workbox.cacheableResponse.CacheableResponsePlugin({
+                statuses: [0, 200]
+            })
+        ]
+    })
+);
+// 可选内容 end 都选可能造成缓存过多 酌情保留。
+workbox.googleAnalytics.initialize();
