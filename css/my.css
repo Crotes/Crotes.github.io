@@ -39,15 +39,10 @@
     background-color: #49b1f5;
   }
 
-  @font-face{
-    font-family:'Yixian' ;  /* 字体名自定义即可 */
-    src:url('/fonts/yixian.ttf'); /* 字体文件路径 */
-    font-display : swap;
-  }
 
   @font-face{
     font-family:'Miaowu' ;  /* 字体名自定义即可 */
-    src:url('/fonts/Miaowu.ttf'); /* 字体文件路径 */
+    src:url('/fonts/Miaowu.woff2'); /* 字体文件路径 */
     font-display : swap;
   }
 
