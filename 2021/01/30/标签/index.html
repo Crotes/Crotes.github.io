@@ -11,7 +11,7 @@
 <meta property="article:author" content="Crotes">
 <meta property="article:tag" content="html">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Crotes/jsd/image/head.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://crotes.top/2021/01/30/%E6%A0%87%E7%AD%BE/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/siteicon/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/siteicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/siteicon/favicon-16x16.png"/><link rel="mask-icon" href="/img/siteicon/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><script>var GLOBAL_CONFIG = { 
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Crotes/jsd/image/head.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://crotes.top/2021/01/30/%E6%A0%87%E7%AD%BE/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><script>var GLOBAL_CONFIG = { 
   root: '/',
   algolia: {"appId":"ZFR9NSG98C","apiKey":"09f9eb2608090d91ffaca56eea403bf0","indexName":"crotes","hits":{"per_page":6},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
   localSearch: undefined,
@@ -1040,40 +1040,4 @@ document.addEventListener('pjax:send', function () {
   const $bodyClassList = document.body.classList
   $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
 
-})</script><div class="app-refresh" id="app-refresh" style="position: fixed;top: -2.2rem;left: 0;right: 0;z-index: 99999;padding: 0 1rem;font-size: 15px;height: 2.2rem;transition: all 0.3s ease;"><div class="app-refresh-wrap" style=" display: flex;color: #fff;height: 100%;align-items: center;justify-content: center;"><label>Crotes又更新啦</label><a href="javascript:void(0)" onclick="location.reload()"><span style="color: #fff;text-decoration: underline;cursor: pointer;">查看更新</span></a></div></div><script>if ('serviceWorker' in navigator) {
-if (navigator.serviceWorker.controller) {
-navigator.serviceWorker.addEventListener('controllerchange', function() {
-showNotification()
-})
-}
-window.addEventListener('load', function() {
-navigator.serviceWorker.register('/sw.js')
-})
-}
-function showNotification() {
-if (GLOBAL_CONFIG.Snackbar) {
-var snackbarBg =
-document.documentElement.getAttribute('data-theme') === 'light' ?
-GLOBAL_CONFIG.Snackbar.bgLight :
-GLOBAL_CONFIG.Snackbar.bgDark
-var snackbarPos = GLOBAL_CONFIG.Snackbar.position
-Snackbar.show({
-text: 'Crotes又更新啦',
-backgroundColor: snackbarBg,
-duration: 500000,
-pos: snackbarPos,
-actionText: '查看更新',
-actionTextColor: '#fff',
-onActionClick: function(e) {
-location.reload()
-},
-})
-} else {
-var showBg =
-document.documentElement.getAttribute('data-theme') === 'light' ?
-'#49b1f5' :
-'#1f1f1f'
-var cssText = `top: 0; background: ${showBg};`
-document.getElementById('app-refresh').style.cssText = cssText
-}
-}</script></div><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
+})</script></div><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
