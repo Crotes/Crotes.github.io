@@ -42,7 +42,7 @@
 
   @font-face{
     font-family:'Miaowu' ;  /* 字体名自定义即可 */
-    src:url('/fonts/Miaowu.woff2'); /* 字体文件路径 */
+    src:url('https://cdn.jsdelivr.net/gh/Crotes/jsd/MiaoWu.woff2'); /* 字体文件路径 */
     font-display : swap;
   }
 
