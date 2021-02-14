@@ -3187,10 +3187,10 @@ li.categoryBar-list-item:nth-child(3)>span::after {
   content: 'C/C++' !important;
 }
 li.categoryBar-list-item:nth-child(4)>span::after {
-  content: '学校题库' !important;
+  content: '前端学习' !important;
 }
 li.categoryBar-list-item:nth-child(5)>span::after {
-  content: '网页小白的成长史' !important;
+  content: '学校题库' !important;
 }
 li.categoryBar-list-item {
   width: 24% !important;
