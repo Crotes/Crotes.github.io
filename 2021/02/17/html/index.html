@@ -1,0 +1,1264 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>html | Crotes</title><meta name="keywords" content="前端基础"><meta name="author" content="Crotes"><meta name="copyright" content="Crotes"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="元素3开始标签（start tag）到结束标签（end tag）的所有代码。开始标签常被称为开放标签（opening tag），结束标签常称为闭合标签 HTML 元素语法  HTML 元素以开始标签起始 HTML 元素以结束标签终止 元素的内容是开始标签与结束标签之间的内容 某些 HTML 元素具有空内容（empty content） 空元素在开始标签中进行关闭（以开始标签的结束而结束） 大多数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html">
+<meta property="og:url" content="http://crotes.top/2021/02/17/html/index.html">
+<meta property="og:site_name" content="Crotes">
+<meta property="og:description" content="元素3开始标签（start tag）到结束标签（end tag）的所有代码。开始标签常被称为开放标签（opening tag），结束标签常称为闭合标签 HTML 元素语法  HTML 元素以开始标签起始 HTML 元素以结束标签终止 元素的内容是开始标签与结束标签之间的内容 某些 HTML 元素具有空内容（empty content） 空元素在开始标签中进行关闭（以开始标签的结束而结束） 大多数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Crotes/jsd/image/head.jpg">
+<meta property="article:published_time" content="2021-02-17T02:39:58.000Z">
+<meta property="article:modified_time" content="2021-02-18T13:53:12.925Z">
+<meta property="article:author" content="Crotes">
+<meta property="article:tag" content="前端基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Crotes/jsd/image/head.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://crotes.top/2021/02/17/html/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"ZFR9NSG98C","apiKey":"09f9eb2608090d91ffaca56eea403bf0","indexName":"crotes","hits":{"per_page":6},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-02-18 21:53:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}const fontSizeVal = saveToLocal.get('global-font-size')
+if (fontSizeVal !== undefined) {
+  document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+}})()</script><meta name="generator" content="Hexo 5.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/Crotes/jsd/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/Crotes/jsd/image/head.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Crotes</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">html</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-17T02:39:58.000Z" title="发表于 2021-02-17 10:39:58">2021-02-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-18T13:53:12.925Z" title="更新于 2021-02-18 21:53:12">2021-02-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">前端学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">6.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>22分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="元素"><a href="#元素" class="headerlink" title="元素"></a>元素</h1><p>3开始标签（start tag）到结束标签（end tag）的所有代码。开始标签常被称为开放标签（opening tag），结束标签常称为闭合标签</p>
+<p><strong>HTML 元素语法</strong></p>
+<ul>
+<li>HTML 元素以<code>开始标签</code>起始</li>
+<li>HTML 元素以<code>结束标签</code>终止</li>
+<li><code>元素的内容</code>是开始标签与结束标签之间的内容</li>
+<li>某些 HTML 元素具有<code>空内容（empty content）</code></li>
+<li>空元素在<code>开始标签中进行关闭</code>（以开始标签的结束而结束）</li>
+<li>大多数 HTML 元素可拥有<code>属性</code></li>
+</ul>
+<h2 id="根元素"><a href="#根元素" class="headerlink" title="根元素"></a>根元素</h2><h3 id="主根元素-html"><a href="#主根元素-html" class="headerlink" title="主根元素 html"></a>主根元素 html</h3><p><code>&lt;html&gt;</code> 元素定义了整个 HTML 文档。</p>
+<p>这个元素拥有一个开始标签 <code>&lt;html&gt;</code>，以及一个结束标签 <code>&lt;/html&gt;</code>。</p>
+<p>元素内容是另一个 HTML 元素（body 元素）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>This is my first paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="分区根元素-body"><a href="#分区根元素-body" class="headerlink" title="分区根元素 body"></a>分区根元素 body</h3><p><code>&lt;body&gt;</code> 元素定义了 HTML 文档的主体。</p>
+<p>这个元素拥有一个开始标签 <code>&lt;body&gt;</code>，以及一个结束标签 <code>&lt;/body&gt;</code>。</p>
+<p>元素内容是另一个 HTML 元素（p 元素）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>This is my first paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h2><h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><p><code>&lt;head&gt;</code> 元素用于定义文档的头部，它是所有头部元素的容器。<code>&lt;head&gt;</code> 中的元素可以引用脚本、指示浏览器在哪里找到样式表、提供元信息等等。</p>
+<p>文档的头部描述了文档的各种属性和信息，包括文档的标题、在 Web 中的位置以及和其他文档的关系等。<strong>绝大多数文档头部包含的数据都不会真正作为内容显示给读者。</strong></p>
+<p><code>&lt;head&gt;</code> 元素必须包含<strong>文档的标题</strong>（title），可以包含<code>脚本</code>、<code>样式</code>、<code>meta 信息</code> 以及其他更多的信息。</p>
+<p>以下列出的元素能被用在 <code>&lt;head&gt;</code> 元素内部：</p>
+<p><code>&lt;title&gt;</code>（在头部中，这个元素是必需的）</p>
+<p><code>&lt;style&gt;</code>,<code>&lt;base&gt;</code>, <code>&lt;link&gt;</code>,<code>&lt;meta&gt;</code>, <code>&lt;script&gt;</code>, <code>&lt;noscript&gt;</code></p>
+<h3 id="base"><a href="#base" class="headerlink" title="base"></a>base</h3><p> <code>&lt;base&gt;</code> 元素 指定用于一个文档中包含的所有相对URL的基本URL。一份中只能有一个<base>元素。如果指定了多个 <base> 元素，只会使用第一个 href 和 target 值, 其余都会被忽略。</p>
+<p>相对链接是省略URL的协议，主机和端口部分的链接并且针对一些其他URL(由基本元素或由基本元素指定的URL)进行评估用于加载当前文档的URL。</p>
+<p><code>&lt;base&gt;</code>元素也指定如何在用户单击链接时打开链接，以及在表单提交后浏览器的行为。</p>
+<p><code>&lt;base&gt;</code>元素有两个局部属性</p>
+<ul>
+<li><p>href</p>
+</li>
+<li><p>target</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>_self</td>
+<td>默认值，跳转到自身</td>
+</tr>
+<tr>
+<td>_blank</td>
+<td>在新窗口打开</td>
+</tr>
+<tr>
+<td>_parent</td>
+<td>对于HTML4，载入结果到当前框的父级框；对于HTML5，载入结果到父级浏览上下文。如果没有父级结构，该选项的行为和_self一样。</td>
+</tr>
+<tr>
+<td>_top</td>
+<td>在HTML4中，载入结果到全部原始窗口，并且取消其他所有框。在HTML5中，载入结果到顶级浏览上下文（该浏览上下文是当前上下文的最顶级上下文）。如果没有父级，该选项的行为和_self一样。</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">&quot;http://www.w3cschool.cn/listings/&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="内容分区"><a href="#内容分区" class="headerlink" title="内容分区"></a>内容分区</h2><h4 id="header"><a href="#header" class="headerlink" title="header"></a>header</h4><p><code>&lt;header&gt;</code>概括性内容</p>
+<p>  –可能包含标题元素</p>
+<p>  –也可以包含其他元素，像logo、分节头部、搜索表单等。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span>&gt;</span>logo<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="footer"><a href="#footer" class="headerlink" title="footer"></a>footer</h4><p><code>&lt;footer&gt;</code>页面的底部内容或者元素的页脚，常用使用的地方有：文章的作者，底部的友情链接，版权显示</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">footer</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><h3 id="块级内容"><a href="#块级内容" class="headerlink" title="块级内容"></a>块级内容</h3><p><strong>div</strong></p>
+<p><code>&lt;div&gt;</code>无语义内容，html5前并没有语义的标签，到了h5之后，增加了相关语义标签，以后开发尽量用有语义的（但是如果你的网页要兼容老版本的浏览器，那么还是推荐div，因为老版本的浏览器不一定兼容h5标签）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="文字内容"><a href="#文字内容" class="headerlink" title="文字内容"></a>文字内容</h3><h4 id="a"><a href="#a" class="headerlink" title="a"></a>a</h4><p><code>&lt;a&gt;</code>超链接元素</p>
+<p>作用：</p>
+<p>1）跳转到另一个文档，页面：具体写法是，直接在href这个属性里写入文档地址或者页面地址；</p>
+<p>2）跳转到文档内部的某个区域：也就是俗称的锚点，通过href=”#id”跳转，如果返回顶部href=”#”仅有一个井号就行；</p>
+<p>3）<strong>作为Email地址：</strong><a href="mailto:xxxx@xxx.com">联系我们</a>，也可以有抄送内容的具体写法<a href="mailto:xxxx@xxx.com？cc=admin@188.com&subject=建议&body=body....">联系我们</a></p>
+<ol>
+<li>cc:抄送人邮件</li>
+<li>subject:主题</li>
+<li>body:正文</li>
+</ol>
+<p>4）<strong>电话号码：</strong><a href="tel:13312346789">13312346789</a></p>
+<p>​        <strong>在移动端的a标签，可以调用拨号软件，拨打电话号码</strong></p>
+<p><strong>a元素的具体属性有以下：</strong></p>
+<ul>
+<li><p><strong>href（常用）：作用见上文</strong></p>
+</li>
+<li><p><strong>target（常用）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>_blan</td>
+<td>新页面打开</td>
+</tr>
+<tr>
+<td>_self</td>
+<td>当前页面打开</td>
+</tr>
+<tr>
+<td>_parent</td>
+<td>在父级的浏览环境中打开</td>
+</tr>
+<tr>
+<td>_top</td>
+<td>在顶级的浏览环境中打开</td>
+</tr>
+<tr>
+<td>浏览环境</td>
+<td>指定浏览环境</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>download（常用）</strong>：链接指定文件，可以下载如：<code>&lt;a href=&quot;..../test.pdf&quot; download&gt;下载&lt;/a&gt;</code>，另外可以在download中指定一个名称，用作下载软件时的重命名（注意：如果文件内容是跨域的，就是<a target="_blank" rel="noopener" href="http://www.xxx.com/xxx/xxx.pdf%EF%BC%8C%E4%B8%8D%E6%98%AF%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%B0%B1%E6%97%A0%E6%B3%95%E9%87%8D%E5%91%BD%E5%90%8D%EF%BC%89">www.xxx.com/xxx/xxx.pdf，不是本地文件就无法重命名）</a></p>
+</li>
+<li><p>hreflang：链接资源的语言 </p>
+</li>
+<li><p>rel：当前文档与被链接文档的关系</p>
+</li>
+<li><p>rev：被链接文档与当前文档的关系</p>
+</li>
+<li><p>type：超链接文档的类型，是普通文本还是html文件还是其他什么</p>
+</li>
+<li><p>referrerpolicy：发送策略</p>
+</li>
+</ul>
+<h4 id="b"><a href="#b" class="headerlink" title="b"></a>b</h4><p><code>&lt;b&gt;</code>加粗</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>这是普通文本 - <span class="tag">&lt;<span class="name">b</span>&gt;</span>这是粗体文本<span class="tag">&lt;/<span class="name">b</span>&gt;</span>。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="strong"><a href="#strong" class="headerlink" title="strong"></a>strong</h4><p><code>&lt;strong&gt;</code> 标签和<code>&lt;em&gt;</code>标签一样，用于强调文本，但它强调的程度更强一些。</p>
+<p>浏览器通常会以不同于<code>&lt;em&gt;</code>标签的方式来显示<code>&lt;strong&gt;</code>标签中的内容，通常是用加粗的字体（相对于斜体）来显示其中的内容，这样用户就可以把这两个标签区分开来了。</p>
+<p>如果常识告诉我们应该较少使用 <code>&lt;em&gt;</code>标签的话，那么<code>&lt;strong&gt;</code>标签出现的次数应该更少。如果说用<code>&lt;em&gt;</code>标签修饰的文本好像是在大声呼喊，那么用<code>&lt;strong&gt;</code>标签修饰的文本就无异于尖叫了。沉默寡言的人说出的话总是一诺千金，与此相同，限制<code>&lt;strong&gt;</code>的使用可以令应该更加引人注意，而且更加有效。</p>
+<hr>
+<h2 id="图片和多媒体"><a href="#图片和多媒体" class="headerlink" title="图片和多媒体"></a>图片和多媒体</h2><h3 id="audio"><a href="#audio" class="headerlink" title="audio"></a>audio</h3><p><code>&lt;audio&gt;</code>插入一段 HTML 5 音频</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">src</span>=<span class="string">&quot;someaudio.wav&quot;</span>&gt;</span></span><br><span class="line">	您的浏览器不支持 audio 标签。</span><br><span class="line"><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>autoplay</td>
+<td>autoplay</td>
+<td>音频马上播放</td>
+</tr>
+<tr>
+<td>controls</td>
+<td>controls</td>
+<td>向用户展示控件，如播放按钮</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>loop</td>
+<td>音频结束时重新开始播放</td>
+</tr>
+<tr>
+<td>muted</td>
+<td>muted</td>
+<td>视频静音</td>
+</tr>
+<tr>
+<td>preload</td>
+<td>preload</td>
+<td>页面加载时进行加载，预备播放</td>
+</tr>
+<tr>
+<td>src</td>
+<td>url</td>
+<td>音频的url</td>
+</tr>
+</tbody></table>
+<h3 id="img"><a href="#img" class="headerlink" title="img"></a>img</h3><p><code>&lt;img&gt;</code>插入一张图片</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src&#x3D;&quot;&#x2F;i&#x2F;eg_tulip.jpg&quot;  alt&#x3D;&quot;上海鲜花港 - 郁金香&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>属性值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>align</td>
+<td>top/bottom/middle</td>
+<td>顶部对齐/底部对齐/居中对齐，默认底部对齐</td>
+</tr>
+<tr>
+<td>href</td>
+<td>url</td>
+<td>点击图片打开另一个链接</td>
+</tr>
+<tr>
+<td>src</td>
+<td>图片路径</td>
+<td>必须属性</td>
+</tr>
+<tr>
+<td>alt</td>
+<td>文本</td>
+<td>替换文本，图像不能显示的文字</td>
+</tr>
+<tr>
+<td>title</td>
+<td>文本</td>
+<td>提示文本，鼠标放在图像上的文字</td>
+</tr>
+<tr>
+<td>width</td>
+<td>像素</td>
+<td>宽度</td>
+</tr>
+<tr>
+<td>height</td>
+<td>像素</td>
+<td>高度</td>
+</tr>
+<tr>
+<td>border</td>
+<td>像素</td>
+<td>边框粗细</td>
+</tr>
+</tbody></table>
+<p>图像映射</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;page.jpg&quot;</span> <span class="attr">border</span>=<span class="string">&quot;0&quot;</span> <span class="attr">usemap</span>=<span class="string">&quot;#page&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;pages&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">map</span> <span class="attr">name</span>=<span class="string">&quot;page&quot;</span> <span class="attr">id</span>=<span class="string">&quot;page&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">area</span> <span class="attr">shape</span>=<span class="string">&quot;circle&quot;</span> <span class="attr">coords</span>=<span class="string">&quot;180,139,14&quot;</span> <span class="attr">href</span> =<span class="string">&quot;page1.html&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;page1&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">area</span> <span class="attr">shape</span>=<span class="string">&quot;circle&quot;</span> <span class="attr">coords</span>=<span class="string">&quot;129,161,10&quot;</span> <span class="attr">href</span> =<span class="string">&quot;page2.html&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;page2&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="内嵌内容"><a href="#内嵌内容" class="headerlink" title="内嵌内容"></a>内嵌内容</h2><h3 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h3><p><code>&lt;iframe&gt;</code>在本页面应用另一个页面，让被引用的页面成为当前页面的一部分。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;demo.html&quot;</span> <span class="attr">height</span>=<span class="string">&quot;300&quot;</span> <span class="attr">width</span>=<span class="string">&quot;500&quot;</span> <span class="attr">name</span>=<span class="string">&quot;demo&quot;</span> <span class="attr">scrolling</span>=<span class="string">&quot;auto&quot;</span> <span class="attr">sandbox</span>=<span class="string">&quot;allow-same-origin&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>align</td>
+<td>left,right,top,middle,bottom</td>
+<td>规定如何根据周围的元素来对齐此框架。（不赞成使用）</td>
+</tr>
+<tr>
+<td>frameborder</td>
+<td>1,0</td>
+<td>规定是否显示框架周围边框</td>
+</tr>
+<tr>
+<td>height</td>
+<td><em>pixels</em> ，*%*</td>
+<td>规定iframe的高度</td>
+</tr>
+<tr>
+<td>longdesc</td>
+<td>url</td>
+<td>规定一个页面，</td>
+</tr>
+<tr>
+<td>marginheight</td>
+<td><em>pixels</em></td>
+<td>定义 iframe 的顶部和底部的边距</td>
+</tr>
+<tr>
+<td>marginwidth</td>
+<td><em>pixels</em></td>
+<td>定义 iframe 的左侧和右侧的边距。</td>
+</tr>
+<tr>
+<td>name</td>
+<td><em>frame_name</em></td>
+<td>规定 iframe 的名称。</td>
+</tr>
+<tr>
+<td>sandbox</td>
+<td>“”,allow-forms,allow-same-origin,allow-scripts,allow-top-navigation</td>
+<td>启用一系列对 <code>&lt;iframe&gt;</code> 中内容的额外限制。</td>
+</tr>
+<tr>
+<td>scrolling</td>
+<td>yes,no,auto</td>
+<td>规定是否在 iframe 中显示滚动条。</td>
+</tr>
+<tr>
+<td>seamless</td>
+<td>seamless</td>
+<td>规定 <code>&lt;iframe&gt;</code> 看上去像是包含文档的一部分。</td>
+</tr>
+<tr>
+<td>src</td>
+<td><em>URL</em></td>
+<td>规定在 iframe 中显示的文档的 URL。</td>
+</tr>
+<tr>
+<td>srcdoc</td>
+<td><em>HTML_code</em></td>
+<td>规定在 <code>&lt;iframe&gt;</code> 中显示的页面的 HTML 内容。</td>
+</tr>
+<tr>
+<td>width</td>
+<td><em>pixels</em>,<em>%</em></td>
+<td>定义 iframe 的宽度。</td>
+</tr>
+</tbody></table>
+<h3 id="object"><a href="#object" class="headerlink" title="object"></a>object</h3><p><code>&lt;object&gt;</code>标签是一个html标签，用于在网页中显示音频，视频，图像，PDF和Flash等多媒体；它通常用于嵌入由浏览器插件处理的Flash页面元素，如Flash和Java项目。它还可以用于在html页面内显示另一个网页。</p>
+<p><code>&lt;object&gt;</code>标签可以和<code>&lt;param&gt;</code>标签一起使用以定义各种参数。当浏览器不支持指定的数据时，写入<code>&lt;object&gt;</code>和<code>&lt;object&gt;</code>标签中的任何文本都被视为备用文本。</p>
+<p><code>&lt;object&gt;</code>标签支持html的所有全局和事件属性。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">object</span> <span class="attr">data</span>=<span class="string">&quot;flashmovie.swf&quot;</span> <span class="attr">width</span>=<span class="string">&quot;600&quot;</span> <span class="attr">height</span>=<span class="string">&quot;800&quot;</span> <span class="attr">type</span>=<span class="string">&quot;application/x-shockwave-flash&quot;</span>&gt;</span> </span><br><span class="line">	请安装Shockwave插件观看此电影。</span><br><span class="line"><span class="tag">&lt;/<span class="name">object</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>type属性告诉浏览器加载哪个插件来显示内容，但是您只需要指定类型或数据，而不必同时指定这两种类型。如果插件不可用，则会显示包含在<code>&lt;object&gt;</code>和<code>&lt;/object&gt;</code>标记之间的任何文本。</p>
+<p>在大多数情况下，<code>&lt;object&gt;</code>用于嵌入浏览器插件支持的内容。理论上，它可以用于显示图像，但<code>&lt;img&gt;</code>元素更适合于此目的。</p>
+<p><code>&lt;object&gt;</code>标签具有的属性</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">data</td>
+<td align="left">网址URL</td>
+<td align="left">指定对象中的数据的URL。</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">媒体类型</td>
+<td align="left">指定data属性中指定的媒体数据类型。</td>
+</tr>
+<tr>
+<td align="left">typemustmatch</td>
+<td align="left">boolean</td>
+<td align="left">表示仅当type属性的值与data属性上提供的资源类型匹配时才应嵌入资源</td>
+</tr>
+<tr>
+<td align="left">align</td>
+<td align="left">左,右,上,下</td>
+<td align="left">定义了对象的对齐方式。</td>
+</tr>
+<tr>
+<td align="left">border</td>
+<td align="left">像素（px）</td>
+<td align="left">指定对象周围的边框。</td>
+</tr>
+<tr>
+<td align="left">height</td>
+<td align="left">像素（px）</td>
+<td align="left">指定对象的高度。</td>
+</tr>
+<tr>
+<td align="left">hspace</td>
+<td align="left">像素（px）</td>
+<td align="left">指定对象左侧和右侧的空白。</td>
+</tr>
+<tr>
+<td align="left">vspace</td>
+<td align="left">像素（px）</td>
+<td align="left">指定对象顶部和底部的空白。</td>
+</tr>
+<tr>
+<td align="left">height</td>
+<td align="left">像素（px）</td>
+<td align="left">指定对象的高度。</td>
+</tr>
+<tr>
+<td align="left">width</td>
+<td align="left">像素（px）</td>
+<td align="left">指定对象的宽度。</td>
+</tr>
+<tr>
+<td align="left">name</td>
+<td align="left">像素（px）</td>
+<td align="left">指定对象的名称。</td>
+</tr>
+<tr>
+<td align="left">form</td>
+<td align="left">form_id</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><h3 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h3><p>HTML5中新增了<code>&lt;canvas&gt;</code>画布标签，通过它，可以使用JavaScript在网页中绘制图像。<code>&lt;canvas&gt;</code>标签在网页中得到的是一个矩形空白区域，可以通过width和height属性来调整其宽和高。创建一个Canvas画布的方法如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">”canvas”</span> <span class="attr">width</span>=<span class="string">”600”</span> <span class="attr">height</span>=<span class="string">”400”</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<p><code>&lt;canvas&gt;</code>标签本身并不具备画图的能力，其本身只是为JavaScript提供了一个绘制图像的区域，因此画图工作需要再JavaScript中完成。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(“canvas”);    </span><br><span class="line"><span class="keyword">var</span> context2D = canvas.getContext(“2d”);    </span><br></pre></td></tr></table></figure>
+<p>首先需要获取到网页中的画布对象，然后用getContext()方法从画布中得到二维绘制对象（传统概念中的画笔）。getContext()方法的参数”2d”即表示二维（据说以后会扩展到三维，而目前唯一可用的参数只有”2d”）。<br>得到的Context对象是HTML5的内建对象，其中包含了许多图形绘制和调整的方法，在JavaScript中通过操作它即可以在Canvas画布中绘制所需的图形。</p>
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a><strong>字符串</strong></h4><p>使用Context对象的fillText()方法能够在画布中绘制字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> fillText(text,left,top, [maxWidth]);</span><br></pre></td></tr></table></figure>
+<p>其四个参数的含义分为是：需绘制的字符串，绘制到画布中时左上角在画布中的横坐标及纵坐标，绘制的字符串的最大长度。其中最大长度maxWidth是可选参数。另外，可以通过改变Context对象的font属性来调整字符串的字体以及大小，默认为”10px sans-serif”。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;canvas&quot;</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span><span class="attr">height</span>=<span class="string">&quot;100&quot;</span>&gt;</span>    </span><br><span class="line">         <span class="tag">&lt;<span class="name">p</span>&gt;</span>Your browserdoes not support the canvas element!<span class="tag">&lt;/<span class="name">p</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span>    </span><br><span class="line">     </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span>    </span><br><span class="line"><span class="javascript"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;    </span></span><br><span class="line"><span class="javascript">         <span class="keyword">var</span> canvas =<span class="built_in">document</span>.getElementById(<span class="string">&quot;canvas&quot;</span>);    </span></span><br><span class="line"><span class="javascript">         <span class="keyword">var</span> context2D =canvas.getContext(<span class="string">&quot;2d&quot;</span>);    </span></span><br><span class="line">            </span><br><span class="line"><span class="javascript">         context2D.font =<span class="string">&quot;30px Times New Roman&quot;</span>;    </span></span><br><span class="line"><span class="javascript">         context2D.fillText(<span class="string">&quot;HelloCanvas!&quot;</span>, <span class="number">10</span>, <span class="number">35</span>);    </span></span><br><span class="line">&#125;    </span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="路径"><a href="#路径" class="headerlink" title="路径"></a><strong>路径</strong></h4><p>HTML5 Canvas的基本图形都是以路径为基础的。通常使用Context对象的moveTo()、lineTo()、rect()、arc()等方法先在画布中描出图形的路径点，然后使用fill()或者stroke()方法依照路径点来填充图形或者绘制线条。</p>
+<p>通常，在开始描绘路径之前需要调用Context对象的beginPath()方法，其作用是清除之前的路径并提醒Context开始绘制一条新的路径，否则当调用stroke()方法的时候会绘制之前所有的路径，影响绘制效果，同时也因为重复多次操作而影响网页性能。另外，调用Context对象的closePath()方法可以显式地关闭当前路径，不过不会清除路径。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> moveTo(x, y);</span><br></pre></td></tr></table></figure>
+<p>用于显式地指定路径的起点。默认状态下，第一条路径的起点是画布的(0, 0)点，之后的起点是上一条路径的终点。两个参数分为表示起点的x、y坐标值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> lineTo(x, y);</span><br></pre></td></tr></table></figure>
+<p>用于描绘一条从起点从指定位置的直线路径，描绘完成后绘制的起点会移动到该指定位置。参数表示指定位置的x、y坐标值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> rect(left, top,width, height);</span><br></pre></td></tr></table></figure>
+<p>用于描绘一个已知左上角顶点位置以及宽和高的矩形，描绘完成后Context的绘制起点会移动到该矩形的左上角顶点。参数表示矩形左上角顶点的x、y坐标以及矩形的宽和高。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> arcTo(x1, y1, x2, y2,radius);</span><br></pre></td></tr></table></figure>
+<p>用于描绘一个与两条线段相切的圆弧，两条线段分别以当前Context绘制起点和(x2, y2)点为起点，都以(x1, y1)点为终点，圆弧的半径为radius。描绘完成后绘制起点会移动到以(x2, y2)为起点的线段与圆弧的切点。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> arc(x, y, radius,startAngle, endAngle, anticlockwise);</span><br></pre></td></tr></table></figure>
+<p>用于描绘一个以(x, y)点为圆心，radius为半径，startAngle为起始弧度，endAngle为终止弧度的圆弧。anticlockwise为布尔型的参数，true表示逆时针，false表示顺时针。参数中的两个弧度以0表示0°，位置在3点钟方向；Math.PI值表示180°，位置在9点钟方向。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> quadraticCurveTo(cpx,cpy, x, y);</span><br></pre></td></tr></table></figure>
+<p>用于描绘以当前Context绘制起点为起点，(cpx,cpy)点为控制点，(x, y)点为终点的二次样条曲线路径。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> bezierCurveTo(cpx1,cpy1, cpx2, cpy2, x, y);</span><br></pre></td></tr></table></figure>
+<p>用于描绘以当前Context绘制起点为起点，(cpx1,cpy1)点和(cpx2, cpy2)点为两个控制点，(x, y)点为终点的贝塞尔曲线路径。</p>
+<p>调整线条及填充风格</p>
+<p><code>strokeStyle</code>线条的颜色，默认为”#000000”，其值可以设置为CSS颜色值、渐变对象或者模式对象。</p>
+<p><code>fillStyle</code>填充的颜色，默认为”#000000”，与strokeStyle一样，值也可以设置为CSS颜色值、渐变对象或者模式对象。</p>
+<p><code>lineWidth</code>线条的宽度，单位是像素（px），默认为1.0。</p>
+<p><code>lineCap</code>线条的端点样式，有butt（无）、round（圆头）、square（方头）三种类型可供选择，默认为butt。</p>
+<p><code>lineJoin</code>线条的转折处样式，有round（圆角）、bevel（平角）、miter（尖角）三种；类型可供选择，默认为miter。</p>
+<p><code>miterLimit</code>线条尖角折角的锐利程序，默认为10。</p>
+<h4 id="画布背景"><a href="#画布背景" class="headerlink" title="画布背景"></a>画布背景</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> fillRect(left, top,width, height);</span><br></pre></td></tr></table></figure>
+<p>用于使用当前的fillStyle（默认为”#000000”，黑色）样式填充一个左上角顶点在(left, top)点、宽为width、高为height的矩形。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> strokeRect(left, top,width, height);</span><br></pre></td></tr></table></figure>
+<p>用于使用当前的线条风格绘制一个左上角顶点在(left, top)点、宽为width、高为height的矩形边框。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> clearRect(left, top,width, height);</span><br></pre></td></tr></table></figure>
+<p>用于清除左上角顶点在(left,top)点、宽为width、高为height的矩形区域内的所有内容。</p>
+<h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><p>Context对象中拥有drawImage()方法可以将外部图片绘制到Canvas中。drawImage()方法的3种原型如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drawImage(image, dx, dy);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drawImage(image, dx, dy,dw, dh);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drawImage(image, sx, sy,sw, sh, dx, dy, dw, dh);</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/Crotes/jsd/CSSstandard/canvas.png"></p>
+<p>image参数可以是HTMLImageElement、HTMLCanvasElement或者HTMLVideoElement。第三个方法原型中的sx、sy在前两个中均为0，sw、sh均为image本身的宽和高；第二和第三个原型中的dw、dh在第一个中也均为image本身的宽和高。</p>
+<hr>
+<h3 id="script"><a href="#script" class="headerlink" title="script"></a>script</h3><p>script&gt; 标签用于定义客户端脚本，比如 JavaScript。</p>
+<p>script 元素既可以包含脚本语句，也可以通过 src 属性指向外部脚本文件。</p>
+<p>必需的 type 属性规定脚本的 MIME 类型。</p>
+<p>JavaScript 的常见应用时图像操作、表单验证以及动态内容更新。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>关键词</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>async</td>
+<td>异步脚本,外部文件,立即下载</td>
+<td>当标签中包含这个属性时会立即下载脚本（外部文件），只对外部脚本文件有效，下载的同时可以进行页面的其他操作，下载完成后停止解析并执行，执行后继续进行解析，但不能保证执行顺序。</td>
+</tr>
+<tr>
+<td>defer</td>
+<td>延迟脚本</td>
+<td>当标签中包含这个属性时，脚本可以再等到页面完全被解析或显示之后执行，只对外部文件有效，如果同时存在两个带有defer的脚本，由于延迟的原因，前者将会有限于后者执行。</td>
+</tr>
+<tr>
+<td>src</td>
+<td>外部引用</td>
+<td>需要引用的外部文件的地址</td>
+</tr>
+<tr>
+<td>type</td>
+<td>MIME</td>
+<td>为保证最大限度的浏览器兼容，type的属性值主要时候用的依旧是text/javascript，如果没有写这个属性，其默认值仍然为text/javascript。</td>
+</tr>
+</tbody></table>
+<p>通常，我们会把带有外部文件的的标签（包括CSS文件，JavaScript文件）的引用放在相同的位置，一般是在<code>&lt;head&gt;</code>标签里面。</p>
+<p>但是在解析过程中一旦遇到多个JavaScript外部文件，就要等到所有的外部文件加载完成后，页面才能完全显示，所以通常我们会把它放在<code>&lt;body&gt;</code>标签里的底部</p>
+<p>在上面中提到过<code>&lt;script&gt;</code>中有defer这个属性，但是由于HTML5会忽略嵌入脚本所设置defer属性，目前只有IE4~IE7还支持defer属性，IE8以后完全遵循HTML5的标准，所以<strong>把<code>&lt;script&gt;</code>放在<code>&lt;body&gt;</code>标签里的底部依旧是最佳选择。</strong></p>
+<p><strong>引用外部文件的优点</strong></p>
+<ul>
+<li><strong>利于维护：</strong>把所有的JavaScript的文件放在一起，不仅可以不触及HTML代码，而且更有利于开发者进行代码的编写和维护。</li>
+<li><strong>加速浏览：</strong>如果有多个HTML页面引用了同一个JavaScript外部文件，这个文件只会加载一次（缓存），也就是说可以加快页面的加载速度。</li>
+<li><strong>安全性：</strong>引用外部文件，如果用户查看HTML代码，将不会看到JavaScript的代码，比写在标签内安全性更高一些。</li>
+</ul>
+<hr>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><h3 id="table、tbody"><a href="#table、tbody" class="headerlink" title="table、tbody"></a>table、tbody</h3><h4 id="表格标签"><a href="#表格标签" class="headerlink" title="表格标签"></a>表格标签</h4><p>用于显示，展示数据，可以让数据显示非常规整，可读性非常好。表格不是用来布局页面的，是用来<strong>展示数据</strong>的。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">td</span>&gt;</span>contest<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		......</span><br><span class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>&lt;table&gt;</code> <code>&lt;/table&gt;</code>是用于定义表格的标签</p>
+<p><code>&lt;tr&gt;</code> <code>&lt;/tr&gt;</code>标签用于定义表格中的行，必须嵌套再 <code>&lt;table&gt;</code> <code>&lt;/table&gt;</code>标签中</p>
+<p><code>&lt;td&gt;</code> <code>&lt;/td&gt;</code>用于定义表格中的单元格，必须嵌套在 <code>&lt;tr&gt;</code> <code>&lt;/tr&gt; </code>中</p>
+<h4 id="表头单元格标签"><a href="#表头单元格标签" class="headerlink" title="表头单元格标签"></a><strong>表头单元格标签</strong></h4><p>一般表头单元格位于表格的第一行或第一列，表头单元格里面的文本内容<strong>加粗居中</strong>显示</p>
+<p><code>&lt;th&gt;</code> <code>&lt;/th&gt;</code>标签表示HTML表格的表头部分</p>
+<p>语法</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">th</span>&gt;</span> contest <span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>表格属性</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>align</td>
+<td>left，center，right</td>
+<td>规定表格相对周围元素的对其方式</td>
+</tr>
+<tr>
+<td>border</td>
+<td>1或“ ”</td>
+<td>规定表格单元是否有边框，默认无边框</td>
+</tr>
+<tr>
+<td>cellpadding</td>
+<td>像素值</td>
+<td>规定单元边沿与其内容之间的空白，默认1像素</td>
+</tr>
+<tr>
+<td>cellspacing</td>
+<td>像素值</td>
+<td>规定单元格之间的空白，默认2像素</td>
+</tr>
+<tr>
+<td>width</td>
+<td>像素值或百分比</td>
+<td>规定表格的宽度</td>
+</tr>
+</tbody></table>
+<p>表格标签的属性实际开发不常用，通过css设置</p>
+<p>如果要用，写在table 里面</p>
+<h4 id="表格结构标签"><a href="#表格结构标签" class="headerlink" title="表格结构标签"></a><strong>表格结构标签</strong></h4><p>基本内容</p>
+<p>&lt; thead&gt;表示表格的头部区域，&lt; tbody&gt;表示表格的主体区域,便于分清表格结构</p>
+<p>&lt; thead&gt;内部必须有&lt; th&gt;标签</p>
+<h4 id="合并单元格"><a href="#合并单元格" class="headerlink" title="合并单元格"></a>合并单元格</h4><p>方式</p>
+<p>1.跨行合并：rowspan = “number”</p>
+<p>2.跨列合并：colspan = “number”</p>
+<p>代码在&lt; td&gt;中编写</p>
+<p>目标单元格</p>
+<p>跨行：最上侧单元格</p>
+<p>跨列：最左侧单元格</p>
+<p>步骤</p>
+<p>1.确定方式</p>
+<p>2.找到目标单元格</p>
+<p>3.删除多余单元格</p>
+<hr>
+<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><p>收集用户信息</p>
+<p>表单由表单域，表单控件，提示信息三个部分组成</p>
+<p>表单域是一个包括表单元素的区域</p>
+<p>&lt; form&gt;标签用于定义表单域，实现用户信息的收集和传递。</p>
+<p>&lt; form&gt;会把他范围内的表单元素信息提交给服务器</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;url&quot;</span> <span class="attr">method</span>=<span class="string">&quot;way&quot;</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span>&gt;</span></span><br><span class="line">	表单元素</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>常用属性</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>属性值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>action</td>
+<td>url地址</td>
+<td>用于指定接受冰数里表单数据的服务器程序的url地址</td>
+</tr>
+<tr>
+<td>mathod</td>
+<td>get/post</td>
+<td>设置表单数据的提交方式，取值为get或post</td>
+</tr>
+<tr>
+<td>name</td>
+<td>名称</td>
+<td>指定表单的名称，区分一个页面中的多个表单域</td>
+</tr>
+</tbody></table>
+<h3 id="表单控件"><a href="#表单控件" class="headerlink" title="表单控件"></a>表单控件</h3><p>作用</p>
+<p>定义各种表单元素，表单元素是允许用户在表单中输入或选择的内容控件</p>
+<p>&lt; input&gt;表单元素</p>
+<p>用于收集用户信息</p>
+<p>&lt; input&gt;标签中包含一个type属性，根据不同的type属性值，输入字段拥有很多种形式（文本，复选框，掩码后的文本，单选按钮，按钮）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;属性值&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>&lt; input /&gt;标签为单标签</li>
+<li>type属性设置不同的属性值用来指定不同的控件类型</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>botton</td>
+<td>定义可点击按钮</td>
+</tr>
+<tr>
+<td>checkbox</td>
+<td>定义复选框</td>
+</tr>
+<tr>
+<td>file</td>
+<td>定义输入字段和“浏览”按钮，供文件上传</td>
+</tr>
+<tr>
+<td>hidden</td>
+<td>定义隐藏的输入字段</td>
+</tr>
+<tr>
+<td>image</td>
+<td>定义图像形式的提交按钮</td>
+</tr>
+<tr>
+<td>password</td>
+<td>定义密码字段，该字段中的字符被掩码</td>
+</tr>
+<tr>
+<td>radio</td>
+<td>定义单选按钮</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>定义重置按钮，会清除表单中的所有数据</td>
+</tr>
+<tr>
+<td>submit</td>
+<td>定义提交按钮，会把表单数据发送到服务器</td>
+</tr>
+<tr>
+<td>text</td>
+<td>定义单行的输入字段，默认宽度为20个字符</td>
+</tr>
+</tbody></table>
+<p>3.其他属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>属性值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>由用户自定义</td>
+<td>定义input元素的名称</td>
+</tr>
+<tr>
+<td>value</td>
+<td>由用户自定义</td>
+<td>规定input元素的值</td>
+</tr>
+<tr>
+<td>checked</td>
+<td>checked</td>
+<td>规定此input元素首次加载时应被选中</td>
+</tr>
+<tr>
+<td>maxlength</td>
+<td>正整数</td>
+<td>规定输入字段中的字符的最大长度</td>
+</tr>
+</tbody></table>
+<p>注意：name和value是每个表单元素都有的属性值，给后台使用；name表单元素的名字，要求单选按钮与复选框要有相同的name值；checked属性主要针对于单元按钮和复选框。</p>
+<h3 id="lt-label-gt-标签"><a href="#lt-label-gt-标签" class="headerlink" title="&lt; label&gt;标签"></a>&lt; label&gt;标签</h3><p>&lt; label&gt;标签为input元素定义标注（标签）</p>
+<p>&lt; label&gt;标签用于绑定一个表单元素，当点击&lt; label&gt;标签内的文本时，浏览器就会自动将光标转到或选择对应的表单元素上，用来增加用户体验</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;sex&quot;</span>&gt;</span> man <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">id</span>=<span class="string">&quot;sex&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&lt; label&gt;标签的for属性应与相关元素的id属性相同</p>
+<p>&lt; select&gt;下拉表单元素</p>
+<p>多个选项让用户选择</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span>&gt;</span> 选项1 <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span>&gt;</span> 选项2 <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">	......</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>1.&lt; select&gt;里面至少包含一对&lt; option&gt;</p>
+<p>2.在&lt; option&gt;中定义selected = “selected”时，当前项为默认选中项</p>
+<hr>
+<h2 id="可交互元素"><a href="#可交互元素" class="headerlink" title="可交互元素"></a>可交互元素</h2><h3 id="menu、menuitem"><a href="#menu、menuitem" class="headerlink" title="menu、menuitem"></a>menu、menuitem</h3><hr>
+<h1 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h1><h2 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h2><h3 id="class、id、style、title"><a href="#class、id、style、title" class="headerlink" title="class、id、style、title"></a>class、id、style、title</h3><hr>
+<h2 id="全局属性"><a href="#全局属性" class="headerlink" title="全局属性"></a>全局属性</h2><hr>
+<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><h2 id="窗口事件"><a href="#窗口事件" class="headerlink" title="窗口事件"></a>窗口事件</h2><h2 id="表单事件"><a href="#表单事件" class="headerlink" title="表单事件"></a>表单事件</h2><h2 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h2><h2 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h2><h2 id="多媒体事件"><a href="#多媒体事件" class="headerlink" title="多媒体事件"></a>多媒体事件</h2><hr>
+<h1 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h1><h2 id="URL编码"><a href="#URL编码" class="headerlink" title="URL编码"></a>URL编码</h2><h2 id="语言代码"><a href="#语言代码" class="headerlink" title="语言代码"></a>语言代码</h2><h2 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Crotes</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://crotes.top/2021/02/17/html/">http://crotes.top/2021/02/17/html/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://crotes.top" target="_blank">Crotes</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Crotes/jsd/image/head.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/02/17/%E7%A0%94%E5%8F%91%E5%B7%A5%E5%85%B7/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/Crotes/jsd/image/head.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">研发工具</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%83%E7%B4%A0"><span class="toc-number">1.</span> <span class="toc-text">元素</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E5%85%83%E7%B4%A0"><span class="toc-number">1.1.</span> <span class="toc-text">根元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E6%A0%B9%E5%85%83%E7%B4%A0-html"><span class="toc-number">1.1.1.</span> <span class="toc-text">主根元素 html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%8C%BA%E6%A0%B9%E5%85%83%E7%B4%A0-body"><span class="toc-number">1.1.2.</span> <span class="toc-text">分区根元素 body</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.</span> <span class="toc-text">元数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#head"><span class="toc-number">1.2.1.</span> <span class="toc-text">head</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#base"><span class="toc-number">1.2.2.</span> <span class="toc-text">base</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E5%88%86%E5%8C%BA"><span class="toc-number">1.3.</span> <span class="toc-text">内容分区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#header"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">header</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#footer"><span class="toc-number">1.3.0.2.</span> <span class="toc-text">footer</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9"><span class="toc-number">1.4.</span> <span class="toc-text">内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%97%E7%BA%A7%E5%86%85%E5%AE%B9"><span class="toc-number">1.4.1.</span> <span class="toc-text">块级内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E5%AD%97%E5%86%85%E5%AE%B9"><span class="toc-number">1.4.2.</span> <span class="toc-text">文字内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">a</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">b</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#strong"><span class="toc-number">1.4.2.3.</span> <span class="toc-text">strong</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E5%92%8C%E5%A4%9A%E5%AA%92%E4%BD%93"><span class="toc-number">1.5.</span> <span class="toc-text">图片和多媒体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#audio"><span class="toc-number">1.5.1.</span> <span class="toc-text">audio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#img"><span class="toc-number">1.5.2.</span> <span class="toc-text">img</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%B5%8C%E5%86%85%E5%AE%B9"><span class="toc-number">1.6.</span> <span class="toc-text">内嵌内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iframe"><span class="toc-number">1.6.1.</span> <span class="toc-text">iframe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#object"><span class="toc-number">1.6.2.</span> <span class="toc-text">object</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC"><span class="toc-number">1.7.</span> <span class="toc-text">脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#canvas"><span class="toc-number">1.7.1.</span> <span class="toc-text">canvas</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.7.1.1.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E5%BE%84"><span class="toc-number">1.7.1.2.</span> <span class="toc-text">路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%BB%E5%B8%83%E8%83%8C%E6%99%AF"><span class="toc-number">1.7.1.3.</span> <span class="toc-text">画布背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87"><span class="toc-number">1.7.1.4.</span> <span class="toc-text">图片</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#script"><span class="toc-number">1.7.2.</span> <span class="toc-text">script</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC"><span class="toc-number">1.8.</span> <span class="toc-text">表格</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#table%E3%80%81tbody"><span class="toc-number">1.8.1.</span> <span class="toc-text">table、tbody</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E6%A0%87%E7%AD%BE"><span class="toc-number">1.8.1.1.</span> <span class="toc-text">表格标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E5%A4%B4%E5%8D%95%E5%85%83%E6%A0%BC%E6%A0%87%E7%AD%BE"><span class="toc-number">1.8.1.2.</span> <span class="toc-text">表头单元格标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E7%BB%93%E6%9E%84%E6%A0%87%E7%AD%BE"><span class="toc-number">1.8.1.3.</span> <span class="toc-text">表格结构标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E5%8D%95%E5%85%83%E6%A0%BC"><span class="toc-number">1.8.1.4.</span> <span class="toc-text">合并单元格</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95"><span class="toc-number">1.9.</span> <span class="toc-text">表单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E6%8E%A7%E4%BB%B6"><span class="toc-number">1.9.1.</span> <span class="toc-text">表单控件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-label-gt-%E6%A0%87%E7%AD%BE"><span class="toc-number">1.9.2.</span> <span class="toc-text">&lt; label&gt;标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E4%BA%A4%E4%BA%92%E5%85%83%E7%B4%A0"><span class="toc-number">1.10.</span> <span class="toc-text">可交互元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#menu%E3%80%81menuitem"><span class="toc-number">1.10.1.</span> <span class="toc-text">menu、menuitem</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7"><span class="toc-number">2.1.</span> <span class="toc-text">常用属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#class%E3%80%81id%E3%80%81style%E3%80%81title"><span class="toc-number">2.1.1.</span> <span class="toc-text">class、id、style、title</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%B1%9E%E6%80%A7"><span class="toc-number">2.2.</span> <span class="toc-text">全局属性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">事件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E4%BA%8B%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">窗口事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E4%BA%8B%E4%BB%B6"><span class="toc-number">3.2.</span> <span class="toc-text">表单事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="toc-number">3.3.</span> <span class="toc-text">键盘事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E4%BA%8B%E4%BB%B6"><span class="toc-number">3.4.</span> <span class="toc-text">鼠标事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%AA%92%E4%BD%93%E4%BA%8B%E4%BB%B6"><span class="toc-number">3.5.</span> <span class="toc-text">多媒体事件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text">编码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#URL%E7%BC%96%E7%A0%81"><span class="toc-number">4.1.</span> <span class="toc-text">URL编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81"><span class="toc-number">4.2.</span> <span class="toc-text">语言代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="toc-number">4.3.</span> <span class="toc-text">字符集</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Crotes</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">welcome to my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="/js/search/algolia.js"></script><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})
+setTimeout(function(){preloader.endLoading();}, 3000);</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    let initData = {
+      el: '#waline-wrap',
+      serverURL: 'https://waline-tau.vercel.app/',
+      avatar: 'monsterid',
+      path: location.pathname,
+      emojiCDN: '',
+      emojiMaps: "",
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const waline = new Waline(initData)
+  }
+
+  if (typeof Waline === 'function') initWaline() 
+  else getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js').then(initWaline)
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    let initData = {
+      el: '#twikoo-wrap',
+      envId: 'crotes-9g1gdhmrfb4da8ba',
+      region: ''
+    }
+
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    twikoo.init(initData)
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'crotes-9g1gdhmrfb4da8ba',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Waline' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script>var gitcalendar = new Vue({
+  el: '#gitcalendar',
+  data: {
+    simplemode: true,
+    user: 'Crotes',
+    fixed: 'fixed',
+    px: 'px',
+    x: '',
+    y: '',
+    span1: '',
+    span2: '',
+    month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    monthchange: [],
+    oneyearbeforeday: '',
+    thisday: '',
+    amonthago: '',
+    aweekago: '',
+    weekdatacore: 0,
+    datacore: 0,
+    total: 0,
+    datadate: '',
+    data: [],
+    positionplusdata: [],
+    firstweek: [],
+    lastweek: [],
+    beforeweek: [],
+    thisweekdatacore: 0,
+    mounthbeforeday: 0,
+    mounthfirstindex: 0,
+    crispedges: 'crispedges',
+    thisdayindex: 0,
+    amonthagoindex: 0,
+    amonthagoweek: [],
+    firstdate: [],
+    first2date: [],
+    montharrbefore: [],
+    monthindex: 0,
+    color: ['#e4dfd7', '#f9f4dc', '#f7e8aa', '#f7e8aa', '#f8df72', '#fcd217', '#fcc515', '#f28e16', '#fb8b05', '#d85916', '#f43e06']
+  },
+  methods: {
+    selectStyle(data, event) {
+      document.querySelector('.angle-wrapper').style.display = 'block'
+      this.span1 = data.date;
+      this.span2 = data.count;
+      this.x = event.clientX - 100;
+      this.y = event.clientY - 60
+    },
+    outStyle() {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    },
+    thiscolor(x) {
+      if (x === 0) {
+        let i = parseInt(x / 2);
+        return this.color[0]
+      } else if (x < 2) {
+        return this.color[1]
+      } else if (x < 20) {
+        let i = parseInt(x / 2);
+        return this.color[i]
+      } else {
+        return this.color[9]
+      }
+    },
+  }
+});
+var apiurl = 'python-github-calendar-api-ochre.vercel.app' ? 'https://python-github-calendar-api-ochre.vercel.app/api?' : 'https://githubapi.ryanchristian.dev/user/'
+var githubapiurl = apiurl + gitcalendar.user;
+//canvas绘图
+function responsiveChart() {
+  let c = document.getElementById("gitcanvas");
+  if (c) {
+    let cmessage = document.getElementById("gitmessage");
+    let ctx = c.getContext("2d");
+    c.width = document.getElementById("gitcalendarcanvasbox").offsetWidth;
+    let linemaxwitdh = 0.96 * c.width / gitcalendar.data.length;
+    c.height = 9 * linemaxwitdh;
+    let lineminwitdh = 0.8 * linemaxwitdh;
+    let setposition = {
+      x: 0.02 * c.width,
+      y: 0.025 * c.width
+    };
+    for (let week in gitcalendar.data) {
+      weekdata = gitcalendar.data[week];
+      for (let day in weekdata) {
+        let dataitem = {
+          date: "",
+          count: "",
+          x: 0,
+          y: 0
+        };
+        gitcalendar.positionplusdata.push(dataitem);
+        ctx.fillStyle = gitcalendar.thiscolor(weekdata[day].count);
+        setposition.y = Math.round(setposition.y * 100) / 100;
+        dataitem.date = weekdata[day].date;
+        dataitem.count = weekdata[day].count;
+        dataitem.x = setposition.x;
+        dataitem.y = setposition.y;
+        ctx.fillRect(setposition.x, setposition.y, lineminwitdh, lineminwitdh);
+        setposition.y = setposition.y + linemaxwitdh
+      };
+      setposition.y = 0.025 * c.width;
+      setposition.x = setposition.x + linemaxwitdh
+    };
+    ctx.font = "600  Arial";
+    ctx.fillStyle = '#aaa';
+    ctx.fillText("日", 0, 1.9 * linemaxwitdh);
+    ctx.fillText("二", 0, 3.9 * linemaxwitdh);
+    ctx.fillText("四", 0, 5.9 * linemaxwitdh);
+    ctx.fillText("六", 0, 7.9 * linemaxwitdh);
+    let monthindexlist = c.width / 24;
+    for (let index in gitcalendar.monthchange) {
+      ctx.fillText(gitcalendar.monthchange[index], monthindexlist, 0.7 * linemaxwitdh);
+      monthindexlist = monthindexlist + c.width / 12
+    };
+    cmessage.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    };
+    c.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+      getMousePos(c, event);
+    };
+
+    function getMousePos(canvas, event) {
+      var rect = canvas.getBoundingClientRect();
+      var x = event.clientX - rect.left * (canvas.width / rect.width);
+      var y = event.clientY - rect.top * (canvas.height / rect.height);
+      //console.log("x:"+x+",y:"+y);
+      for (let item of gitcalendar.positionplusdata) {
+        let lenthx = x - item.x;
+        let lenthy = y - item.y;
+        //console.log(lenthx,lenthy);
+        if (0 < lenthx && lenthx < lineminwitdh) {
+          if (0 < lenthy && lenthy < lineminwitdh) {
+            //console.log(item.date,item.count)
+            document.querySelector('.angle-wrapper').style.display = 'block'
+            gitcalendar.span1 = item.date;
+            gitcalendar.span2 = item.count;
+            gitcalendar.x = event.clientX - 100;
+            gitcalendar.y = event.clientY - 60
+          }
+        }
+        //if(0< x - item.x <lineminwitdh&&0< y - item.y <lineminwitdh){
+        //console.log(item.count,item.date);
+        //}
+      }
+    }
+  }
+}
+//数据统计算法
+function addlastmonth() {
+  if (gitcalendar.thisdayindex === 0) {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweekcore(48);
+    gitcalendar.thisweekdatacore += gitcalendar.firstdate[6].count;
+    gitcalendar.amonthago = gitcalendar.firstdate[6].date
+  } else {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweek2core();
+    gitcalendar.amonthago = gitcalendar.first2date[gitcalendar.thisdayindex - 1].date
+  }
+};
+
+function thisweek2core() {
+  for (let i = gitcalendar.thisdayindex - 1; i < gitcalendar.first2date.length; i++) {
+    gitcalendar.thisweekdatacore += gitcalendar.first2date[i].count
+  }
+};
+
+function thisweekcore(index) {
+  for (let item of gitcalendar.data[index]) {
+    gitcalendar.thisweekdatacore += item.count
+  }
+};
+
+function addlastweek() {
+  for (let item of gitcalendar.lastweek) {
+    gitcalendar.weekdatacore += item.count
+  }
+};
+
+function addbeforeweek() {
+  for (let i = gitcalendar.thisdayindex; i < gitcalendar.beforeweek.length; i++) {
+    gitcalendar.weekdatacore += gitcalendar.beforeweek[i].count
+  }
+};
+
+function addweek(data) {
+  if (gitcalendar.thisdayindex === 6) {
+    gitcalendar.aweekago = gitcalendar.lastweek[0].date;
+    addlastweek()
+  } else {
+    lastweek = data.contributions[51];
+    gitcalendar.aweekago = lastweek[gitcalendar.thisdayindex + 1].date;
+    addlastweek();
+    addbeforeweek()
+  }
+}
+
+fetch(githubapiurl)
+  .then(data => data.json())
+  .then(data => {
+    gitcalendar.data = data.contributions;
+    gitcalendar.total = data.total;
+    gitcalendar.first2date = gitcalendar.data[48];
+    gitcalendar.firstdate = gitcalendar.data[47];
+    gitcalendar.firstweek = data.contributions[0];
+    gitcalendar.lastweek = data.contributions[52];
+    gitcalendar.beforeweek = data.contributions[51];
+    gitcalendar.thisdayindex = gitcalendar.lastweek.length - 1;
+    gitcalendar.thisday = gitcalendar.lastweek[gitcalendar.thisdayindex].date;
+    gitcalendar.oneyearbeforeday = gitcalendar.firstweek[0].date;
+    gitcalendar.monthindex = gitcalendar.thisday.substring(5, 7) * 1;
+    gitcalendar.montharrbefore = gitcalendar.month.splice(gitcalendar.monthindex, 12 - gitcalendar.monthindex);
+    gitcalendar.monthchange = gitcalendar.montharrbefore.concat(gitcalendar.month);
+    addweek(data);
+    addlastmonth();
+    responsiveChart();
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+
+//手机版更换为svg绘制
+if (document.getElementById("gitcalendarcanvasbox").offsetWidth < 500) {
+  gitcalendar.simplemode = false
+}
+
+//当改变窗口大小时重新绘制canvas
+window.onresize = function() {
+  if (gitcalendar.simplemode) responsiveChart()
+}
+
+//解决滚动滑轮时出现的标签显示
+window.onscroll = function() {
+  if (document.querySelector('.angle-wrapper')) {
+    document.querySelector('.angle-wrapper').style.display = 'none'
+  }
+};</script></div><link rel="stylesheet" href="/css/my.css"><script defer type="text/javascript" src="/js/my.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})</script></div><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
