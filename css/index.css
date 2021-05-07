@@ -3163,19 +3163,19 @@ span.categoryBar-list-count::after {
   right: -100%;
 }
 li.categoryBar-list-item:nth-child(1) {
-  background: url('https://cdn.jsdelivr.net/gh/Crotes/jsd/image/001.jpg');
+  background: url('https://cdn.jsdelivr.net/gh/Crotes/jsd/pic/005.jpg');
 }
 li.categoryBar-list-item:nth-child(2) {
-  background: url('https://cdn.jsdelivr.net/gh/Crotes/jsd/image/002.jpg');
+  background: url('https://cdn.jsdelivr.net/gh/Crotes/jsd/pic/006.jpg');
 }
 li.categoryBar-list-item:nth-child(3) {
-  background: url('https://cdn.jsdelivr.net/gh/Crotes/jsd/image/003.jpg');
+  background: url('https://cdn.jsdelivr.net/gh/Crotes/jsd/pic/007.jpg');
 }
 li.categoryBar-list-item:nth-child(4) {
-  background: url('https://cdn.jsdelivr.net/gh/Crotes/jsd/image/004.jpg');
+  background: url('https://cdn.jsdelivr.net/gh/Crotes/jsd/pic/004.jpg');
 }
 li.categoryBar-list-item:nth-child(5) {
-  background: url('https://cdn.jsdelivr.net/gh/Crotes/jsd/image/005.jpg');
+  background: url('https://cdn.jsdelivr.net/gh/Crotes/jsd/pic/005.jpg');
 }
 li.categoryBar-list-item:nth-child(1)>span::after {
   content: 'ACM的辛酸史' !important;
