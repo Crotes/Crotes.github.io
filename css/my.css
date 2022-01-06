@@ -16,7 +16,7 @@
     font-display : swap;
 } 
 
-h1#site-title ,a.article-title ,a.blog-slider__title, a.categoryBar-list-link, h1.post-title {
+h1#site-title ,a.article-title ,a.blog-slider__title, a.categoryBar-list-link, h1.post-title, a#site-name {
     font-family: 'Miaowu', sans-serif;
 }
 
