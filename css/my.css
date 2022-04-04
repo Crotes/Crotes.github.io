@@ -6,13 +6,13 @@
 /* 字体 */
 @font-face{
     font-family:'Miaowu' ;  
-    src:url('https://unpkg.zhimg.com/crotes-blog@1.0.2/font/MiaoWu.woff2');
+    src:url('https://npm.elemecdn.com/crotes-blog@1.0.2/font/MiaoWu.woff2');
     font-display : swap;
 } 
   
 @font-face{
     font-family:'ZhuZiAYuanJWD' ;  
-    src:url('https://unpkg.zhimg.com/crotes-blog@1.0.2/font/ZhuZiAYuanJWD.woff');
+    src:url('https://npm.elemecdn.com/crotes-blog@1.0.2/font/ZhuZiAYuanJWD.woff');
     font-display : swap;
 } 
 
