@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.crotes.top/link/index.html</loc>
+    
+    <lastmod>2024-03-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.crotes.top/tags/index.html</loc>
+    
+    <lastmod>2024-03-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.crotes.top/posts/325160569.html</loc>
     
     <lastmod>2024-03-31</lastmod>
@@ -165,24 +183,6 @@
   
   <url>
     <loc>http://www.crotes.top/categories/index.html</loc>
-    
-    <lastmod>2024-03-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.crotes.top/link/index.html</loc>
-    
-    <lastmod>2024-03-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.crotes.top/tags/index.html</loc>
     
     <lastmod>2024-03-31</lastmod>
     
